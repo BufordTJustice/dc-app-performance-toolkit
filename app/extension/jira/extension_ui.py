@@ -12,6 +12,7 @@ def app_specific_action(webdriver, datasets):
     page = BasePage(webdriver)
     if datasets['custom_issues']:
         issue_key = datasets['custom_issue_key']
+        issue_id = datasets['custom_issue_id']
 
     # To run action as specific user uncomment code bellow.
     # NOTE: If app_specific_action is running as specific user, make sure that app_specific_action is running
@@ -36,7 +37,7 @@ def app_specific_action(webdriver, datasets):
     def measure():
         @print_timing("selenium_app_custom_action:edit_issue")
         def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/EditIssue!default.jspa?id={issue_key}")
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/EditIssue!default.jspa?id={issue_id}")
             page.wait_until_visible((By.ID, "summary"))  # Wait for summary field visible
             page.wait_until_visible((By.ID, "customfield_11100"))  # Wait for you app-specific UI element by ID selector
         sub_measure()
