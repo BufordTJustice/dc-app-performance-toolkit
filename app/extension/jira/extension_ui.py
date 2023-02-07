@@ -37,7 +37,7 @@ def app_specific_action(webdriver, datasets):
         @print_timing("selenium_app_custom_action:edit_issue")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/secure/EditIssue!default.jspa?id={issue_key}")
-            page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
+            page.wait_until_visible((By.ID, "summary"))  # Wait for summary field visible
             page.wait_until_visible((By.ID, "customfield_11100"))  # Wait for you app-specific UI element by ID selector
         sub_measure()
     measure()
